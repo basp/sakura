@@ -23,7 +23,7 @@ WORKDIR /app/hellcore
 RUN git clone https://github.com/necanthrope/hellcore .
 RUN ./build.sh
 
-# Let's copy over the executable and databases for convience.
+# Let's copy over the executable and databases for convenience.
 RUN cp ./src/moo ..
 RUN cp ./hellcore.db ..
 RUN cp ./src/Minimal.db ../minimal.db
