@@ -39,3 +39,57 @@ The best way to test it out is to install a so called "MUD Client", I recommend 
     ** connected **
 
 If you get the `**connected**` response you're good to go. What you can do at this point depends on the database you're using.
+
+## Sakura database
+If you load the `sakura.db` database:
+
+    ./mooo sakura.db sakura.db.new
+
+Then there will be some things already implemented. The most basic thing you could try is:
+
+    ;3 + 2
+    => 5
+
+By typing `;` you'll invoke the eval command. It's the same as typing:
+
+    eval 3 + 2
+
+The `=>` is the result of the expression you *evaluated*. When evaluating a statement (or command) such as `notify` it will often be `0` which means there wasn't a real result (equivalent to `void` in imperative and `unit` in function programming languages).
+
+### Action queue
+One of the core concepts that we wanna get right is the *action queue*. This is a concept that is very well implemented in HellMOO and as for gameplay, it offers a lot of oppurtunities.
+
+Currently we have a very rudimentary action queue implementation. The prototypical object is implemented as `$actor` and its public API is pretty simple (so far).
+
+You can invoke `$actor:queue_action(spec)` to add an action to any actors `action_queue`. If that actor is not already processing it's `action_queue` it will start to do so immediately.
+
+#### Example
+Say you just compiled the container and got the `**connected**` prompt.. What now?
+
+First see if this secnario works:
+
+    ;3 + 2
+    => 5
+
+So you type `;3 + 2` (including the `;`) and the system responds with `=> 5`. If you got that working then you are good to go.
+
+Now, as far as the **action queue** goes, we don't actually push actions but we push so called *action specs* onto the queue. An *action spec* is basically a `{action, args, description}` tuple.
+
+Now we could use the `$actor` object directly:
+
+    ;$actor:queue_action({$actions.foo, [], "foo"});
+
+Which would work but we can also do a bit better by creating a new `$actor` object:
+
+    ;create($actor);
+    => #12
+
+Your response will vary because we're creating a new object here. The result we get back is the new object id, in the example above it's `#12` but it's very likely you got a different number.
+
+What we just did is create a new object with the characteristics of the `$actor` object but we can play with it without worrying about messing up the prototypical `$actor` itself.
+
+So with that new object (`#12`) we can try out the action qaueue. Remember, we need to queue *specs* and not actions so:
+
+    ;#12:queue_action({$actions.foo, [], "foo"});
+
+And you should see some output about starting and stopping fooing.
