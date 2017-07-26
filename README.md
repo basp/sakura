@@ -1,6 +1,9 @@
 ## Sakura
 The central repository for both the **Sakura** `Dockerfile` (to build a development image) and the *current* database required to bootstrap your environment.
 
+## Why?
+You will only need this if you are on Windows and wanna do some local MOO hacking without relying on a machine in the cloud. This `Dockerfile` should compile a Docker image that you can boot up to start hacking on a variety of MOO databases straightaway.
+
 ## Getting started
 You'll need to build the container first. Make sure to give it a tag that you can remember:
 
