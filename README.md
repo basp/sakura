@@ -5,11 +5,13 @@ The central repository for both the **Sakura** `Dockerfile` (to build a developm
 You will only need this if you are on Windows and wanna do some local MOO hacking without relying on a machine in the cloud. This `Dockerfile` should compile a Docker image that you can boot up to start hacking on a variety of MOO databases straightaway.
 
 ## Getting started
+After cloning this repo somewhere you'll end up with `Dockerfile` and this is the thing that contains all the instructions on how to build your development container.
+
 You'll need to build the container first. Make sure to give it a tag that you can remember:
 
     docker build -t your_repo:and_tag .
 
-This will compile the container. After it's done building the image you can make sure it's actually there:
+If you execute this from the `sakura` repo directory that you just cloned, it will compile the container. After it's done building the image you can make sure it's actually there:
 
     docker image list
 
@@ -26,3 +28,11 @@ This should bring you into Ubuntu and you should've ended up in the `/app` direc
     ./moo database.db database.db.new &
 
 You'll have to substitute `database.db` with any of the available `.db` files in the `/app` directory though.
+
+## Testing it out
+The best way to test it out is to install a so called "MUD Client", I recommend [Mudlet](https://www.mudlet.org/) but there are alternatives. You could also try `telnet` if you're comfortable with that. On *nx based systems `nc` works great as well.
+
+    > nc 127.0.0.1 4000
+    ** connected **
+
+If you get the `**connected**` response you're good to go. What you can do at this point depends on the database you're using.
