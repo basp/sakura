@@ -14,6 +14,6 @@ Also, we need to make sure to map the *exposed* 7999 port to the container's hos
 
 This should bring you into the Docker hosted Ubuntu system and you should've ended up in the `/app` directory. From here we can launch the MOO:
 
-    ./moo database.db database.db.new
+    ./moo database.db database.db.new &
 
 You'll have to substitute `database.db` with any of the available `.db` files in the `/app` directory though.
