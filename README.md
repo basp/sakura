@@ -2,7 +2,7 @@
 The central repository for both the **Sakura** `Dockerfile` (to build a development image) and the *current* database required to bootstrap your environment.
 
 ## Prerequisites
-Either [Docker for Windows](https://www.docker.com/docker-windows) or [Docker Tookbox](https://www.docker.com/products/docker-toolbox).
+Either [Docker for Windows](https://www.docker.com/docker-windows) or [Docker Toolbox](https://www.docker.com/products/docker-toolbox).
 
 ## Why?
 You will only need this if you are on Windows and wanna do some local MOO hacking without relying on a machine in the cloud. This `Dockerfile` should compile a Docker image that you can boot up to start hacking on a variety of MOO databases straightaway.
