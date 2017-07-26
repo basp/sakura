@@ -98,7 +98,11 @@ If you queue a lot of actions they will *stack* as if it really was a queue. For
 
     ;#12:stop();
 
-And that will cancel the execution of the current action as well as any actions queued up in the queue.
+And that will cancel the execution of the current action as well as any actions queued up in the queue. If you're done playing with that actor object it's good practice to `recycle` it:
+
+    ;recycle(#12);
+
+This will free up some space on disk as well as in memory.
 
 ### Note
 If you're curious about the implementation, check out the `code.moo` file that is included in this repo.
