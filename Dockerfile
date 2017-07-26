@@ -24,6 +24,8 @@ RUN git clone https://github.com/necanthrope/hellcore .
 RUN ./build.sh
 
 # Let's copy over the executable and databases for convenience.
+# Also normalize the names a bit because capitals are just fugly
+# in filenames.
 RUN cp ./src/moo ..
 RUN cp ./hellcore.db ..
 RUN cp ./src/Minimal.db ../minimal.db
