@@ -16,6 +16,8 @@ As this is supposed to be a development container it's expected that you'll laun
 
     docker run -it -p 4000:7999 your_repo:and_tag /bin/bash
 
+> As an aside, in the command above, the `i` and `t` flags we are gonna run this container in interactive mode and with a **tty** (terminal attached) attached.j The `p` flag is our port mapping. Finally we specify the `repository:tag` image to run and the main command (in this case we startup `bash` the prototypical command-line executable on Ubuntu).
+
 This should bring you into Ubuntu and you should've ended up in the `/app` directory. From here we can launch the MOO:
 
     ./moo database.db database.db.new &
