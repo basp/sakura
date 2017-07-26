@@ -10,10 +10,9 @@ RUN apt-get update && apt-get install -y \
     byacc \
     flex \
     autoconf \
-    git \
-    vim
+    git
 
-RUN git clone https://github.com/basp/sakura .
+RUN git clone https://github.com/necanthrope/HellCore .
 
 RUN ./build.sh
 
