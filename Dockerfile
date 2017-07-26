@@ -14,6 +14,8 @@ WORKDIR /app/hellcore
 RUN git clone https://github.com/necanthrope/hellcore .
 RUN ./build.sh
 RUN cp ./src/moo ..
+RUN cp ./hellcore.db ..
+RUN cp ./src/Minimal.db ../minimal.db
 
 WORKDIR /app/sakura
 RUN git clone https://github.com/basp/sakura .
