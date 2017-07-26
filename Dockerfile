@@ -12,3 +12,9 @@ RUN apt-get update && apt-get install -y \
     autoconf \
     git \
     vim
+
+RUN git clone https://github.com/basp/sakura .
+
+RUN ./build.sh
+
+RUN cp ./src/moo .
