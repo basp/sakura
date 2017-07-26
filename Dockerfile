@@ -20,5 +20,3 @@ RUN git clone https://github.com/basp/sakura .
 RUN cp ./sakura.db ..
 
 WORKDIR /app
-
-RUN echo Remember to map your ports when running the image!
