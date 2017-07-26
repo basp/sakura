@@ -106,3 +106,8 @@ This will free up some space on disk as well as in memory.
 
 ### Note
 If you're curious about the implementation, check out the `code.moo` file that is included in this repo.
+
+## TODO
+* Long actions, continue the same action over and over.
+* (Or perhaps) continue from one action into the next.
+* Smooth output on continuations (e.g. "You continue...")
