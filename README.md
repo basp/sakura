@@ -93,3 +93,12 @@ So with that new object (`#12`) we can try out the action qaueue. Remember, we n
     ;#12:queue_action({$actions.foo, [], "foo"});
 
 And you should see some output about starting and stopping fooing.
+
+If you queue a lot of actions they will *stack* as if it really was a queue. For now, and for development purposes you can pretty easily cancel a whole queue by calling the `stop` verb:
+
+    ;#12:stop();
+
+And that will cancel the execution of the current action as well as any actions queued up in the queue.
+
+### Note
+If you're curious about the implementation, check out the `code.moo` file that is included in this repo.
