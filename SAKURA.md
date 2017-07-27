@@ -25,7 +25,7 @@ If an object doesn't have a clear ancestor it should be created from root:
 This is mostly a placeholder object (and *tag* for action objects) to hold some documentation.
 
 #### $actor
-This object contains the prototypical *action queue* implemenation that originates from the `hellcore.db` database (it's a bit simplified and tweaked but not that much).
+This object contains the prototypical *action queue* implemenation that originates from the `hellcore.db` database (it's simplified and tweaked though).
 
 #### $creature
 This is an important proto that will eventuall support a lot of behavior that is important for gaming purposes.
