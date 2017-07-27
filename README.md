@@ -77,7 +77,9 @@ Now, as far as the **action queue** goes, we don't actually push actions but we 
 
 Now we could use the `$actor` object directly:
 
-    ;$actor:queue_action({$actions.foo, [], "foo"});
+    ;$actor:queue_action({$actions.foo, [], 1, "foo"});
+
+> Note that the 3rd argument, the `1` flag specifies that this action is interruptible.
 
 Which would work but we can also do a bit better by creating a new `$actor` object:
 
@@ -90,7 +92,7 @@ What we just did is create a new object with the characteristics of the `$actor`
 
 So with that new object (`#12`) we can try out the action qaueue. Remember, we need to queue *specs* and not actions so:
 
-    ;#12:queue_action({$actions.foo, [], "foo"});
+    ;#12:queue_action({$actions.foo, [], 1, "foo"});
 
 And you should see some output about starting and stopping fooing.
 
