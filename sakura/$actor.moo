@@ -1,53 +1,3 @@
-.program here:eval
-answer = eval("return " + argstr + ";");
-if (answer[1])
-    notify(player, tostr("=> ", toliteral(answer[2])));
-else
-    for line in (answer[2])
-        notify(player, line);
-    endfor
-endif
-.
-
-.program #1:name
-return this.name;
-.
-
-.program #1:dname
-return tostr("the ", this:name());
-.
-
-.program #1:iname
-name = this:name();
-if (has_property(this, "article"))
-    return tostr(this.article, " ", name);
-endif
-return tostr($english_utils:article_for(name), " ", name);
-.
-
-.program #1:title
-return this:name();
-.
-
-.program #7:_start
-who = args[1];
-who:tell("You start fooing.")
-return {3, $nothing};
-.
-
-.program #7:_finish
-who = args[1];
-who:tell("You finish fooing.");
-.
-
-.program #7:_abort
-who:tell("You stop fooing.");
-.
-
-.program #7:doing_msg
-return "fooing";
-.
-
 .program $actor:process_queue
 ":process_queue()";
 continuation = {};
@@ -182,6 +132,7 @@ if (dobjstr && player.programmer)
     endif
     if (!is_a(dobj, $actor))
         player:tell("You can't queue that.");
+        return;
     endif
     player:tell("Showing queue for ", toliteral(dobj), ":");
 else   
@@ -208,68 +159,3 @@ if (this.executing)
     return "";
 endif
 .
-
-.program $creature:tell
-notify(this, tostr(@args));
-.
-
-.program $room:announce_all
-for x in (this.contents)
-    `x.listening ! ANY => 0' && x:tell(@args);
-endfor
-.
-
-.program $room:announce_all_but
-":announce_all_but(LIST objects_to_ignore, text)";
-{ignore, @text} = args;
-contents = this.contents;
-for x in (ignore)
-    contents = setremove(contents, x);
-endfor
-for x in (contents)
-    `x.listening ! ANY => 0' && x:tell(@text);
-endfor
-.
-
-.program $english_utils:quote
-":quote(OBJ who, STR text)
-.
-
-.program $english_utils:article_for
-":article_for(STR s)";
-string = args[1];
-if (!string)
-    return "a";
-endif
-for i in [1..length(string)]
-    if (index($string_utils.alphabet, string[i]))
-        if (index("aeiou", string[i]))
-            return "an";
-        else
-            return "a";
-        endif
-    endif
-endfor
-return "a";
-.
-
-";add_property($ansi, "esc", "", {#3, "r"});";
-;add_property($ansi, "reset", tostr($ansi.esc, "[0m"), {#3, "r"});
-;add_property($ansi, "bold_on", tostr($ansi.esc, "[1m"), {#3, "r"});
-;add_property($ansi, "bold_off", tostr($ansi.esc, "[22m"), {#3, "r"});
-;add_property($ansi, "black", tostr($ansi.esc, "[30m"), {#3, "r"});
-;add_property($ansi, "red", tostr($ansi.esc, "[31m"), {#3, "r"});
-;add_property($ansi, "green", tostr($ansi.esc, "[32m"), {#3, "r"});
-;add_property($ansi, "yellow", tostr($ansi.esc, "[33m"), {#3, "r"});
-;add_property($ansi, "blue", tostr($ansi.esc, "[34m"), {#3, "r"});
-;add_property($ansi, "magenta", tostr($ansi.esc, "[35m"), {#3, "r"});
-;add_property($ansi, "cyan", tostr($ansi.esc, "[36m"), {#3, "r"});
-;add_property($ansi, "white", tostr($ansi.esc, "[37m"), {#3, "r"});
-;add_property($ansi, "black_bg", tostr($ansi.esc, "[40m"), {#3, "r"});
-;add_property($ansi, "red_bg", tostr($ansi.esc, "[41m"), {#3, "r"});
-;add_property($ansi, "green_bg", tostr($ansi.esc, "[42m"), {#3, "r"});
-;add_property($ansi, "yellow_bg", tostr($ansi.esc, "[43m"), {#3, "r"});
-;add_property($ansi, "blue_bg", tostr($ansi.esc, "[44m"), {#3, "r"});
-;add_property($ansi, "magenta_bg", tostr($ansi.esc, "[45m"), {#3, "r"});
-;add_property($ansi, "cyan_bg", tostr($ansi.esc, "[46m"), {#3, "r"});
-;add_property($ansi, "white_bg", tostr($ansi.esc, "[47m"), {#3, "r"});
