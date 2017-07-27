@@ -3,6 +3,7 @@ This aims to be a complete guide to **Sakura**.
 
 ## Getting started (with minimal)
 ## Getting started (with sakura)
+## Programming
 
 ## Reference
 ### Core
