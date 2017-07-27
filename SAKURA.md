@@ -20,8 +20,6 @@ Here's the current list of display codes defined on the `$ansi` object:
 ##### Control
 * `esc` (the ANSI escape character)
 * `reset` (reset to default terminal style)
-
-##### FX
 * `bold_on` (turn on bold or highlight)
 * `bold_off` (turn off bold or highlight)
 
