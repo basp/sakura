@@ -1,9 +1,10 @@
 ** LambdaMOO Database, Format Version 6 **
-16
-21
+19
+29
 0
-1
+2
 3
+17
 #0
 System Object
 
@@ -20,7 +21,7 @@ do_login_command
 3
 173
 -1
-12
+15
 actor
 action
 nothing
@@ -33,7 +34,10 @@ player
 room
 english_utils
 string_utils
-13
+wiz
+thing
+root
+16
 1
 4
 3
@@ -82,6 +86,18 @@ string_utils
 15
 3
 1
+1
+3
+3
+1
+1
+16
+3
+1
+1
+1
+17
+1
 5
 3
 1
@@ -96,7 +112,7 @@ Root Class
 -1
 0
 -1
-4
+7
 name
 3
 173
@@ -111,6 +127,18 @@ dname
 -1
 iname
 3
+173
+-1
+dnamec
+3
+173
+-1
+inamec
+3
+173
+-1
+announce_action_text aat
+17
 173
 -1
 1
@@ -148,9 +176,9 @@ Wizard
 3
 2
 -1
--1
+17
 12
--1
+17
 -1
 0
 0
@@ -167,7 +195,7 @@ Wizard
 3
 1
 0
-2044894084
+156105512
 3
 1
 4
@@ -178,7 +206,7 @@ Wizard
 3
 1
 #4
-Actor
+generic actor
 
 0
 3
@@ -243,7 +271,7 @@ executing
 3
 1
 #5
-Action
+generic action
 
 0
 3
@@ -318,7 +346,7 @@ doing_msg
 3
 1
 #8
-Actions
+actions library
 
 0
 3
@@ -341,7 +369,7 @@ foo
 1
 #9 recycled
 #10
-ANSI
+ansi utils
 
 0
 3
@@ -458,7 +486,7 @@ white_bg
 3
 1
 #11
-Creature
+generic creature
 
 0
 3
@@ -468,9 +496,13 @@ Creature
 4
 12
 -1
-1
+2
 tell
 3
+173
+-1
+say
+17
 173
 -1
 1
@@ -496,7 +528,7 @@ has_proper_name
 3
 1
 #12
-Player
+generic player
 
 0
 3
@@ -506,7 +538,11 @@ Player
 11
 3
 -1
-0
+1
+l*ook
+17
+93
+-2
 0
 6
 0
@@ -530,7 +566,7 @@ Player
 3
 1
 #13
-Room
+generic room
 
 0
 3
@@ -540,7 +576,7 @@ Room
 1
 2
 14
-2
+3
 announce_all
 3
 173
@@ -549,13 +585,17 @@ announce_all_but
 3
 173
 -1
+say
+17
+93
+-2
 0
 1
 5
 3
 1
 #14
-English utils
+english utils
 
 0
 3
@@ -565,8 +605,12 @@ English utils
 1
 -1
 15
-1
+2
 article_for
+3
+173
+-1
+quote
 3
 173
 -1
@@ -576,7 +620,7 @@ article_for
 3
 1
 #15
-String utils
+string utils
 
 0
 3
@@ -585,8 +629,12 @@ String utils
 -1
 1
 -1
+16
+1
+capitalize
+3
+173
 -1
-0
 1
 alphabet
 2
@@ -597,8 +645,62 @@ abcdefghijklmnopqrstuvwxyz
 5
 3
 1
+#16
+generic thing
+
+0
+3
+-1
+-1
+-1
+1
+-1
+-1
+0
+0
+1
+5
+3
+1
+#17
+Vanity
+
+7
+3
+2
+-1
+-1
+3
+-1
+-1
+0
+0
+6
+5
+3
+1
+4
+0
+3
+1
+0
+1
+3
+1
+0
+620873204
+3
+1
+4
+0
+3
+1
+5
+3
+1
+#18 recycled
 #0:0
-return #3;
+return #17;
 .
 #1:0
 return this.name;
@@ -615,6 +717,15 @@ if (has_property(this, "article"))
 return tostr(this.article, " ", name);
 endif
 return tostr($english_utils:article_for(name), " ", name);
+.
+#1:4
+return $string_utils:capitalize(this:dname());
+.
+#1:5
+return $string_utils:capitalize(this:iname());
+.
+#1:6
+this.location:announce_all(@args);
 .
 #2:0
 answer = eval(("return " + argstr) + ";");
@@ -781,21 +892,39 @@ return "";
 endif
 .
 #7:0
-notify(player, "You start fooing.");
-return {3, $nothing};
+who = args[1];
+player:aat(who:name(), " starts fooing.");
+return {3, 0};
 .
 #7:1
 who = args[1];
-who:tell("You finish fooing.");
+player:aat(who:name(), " finishes fooing.");
 .
 #7:2
-who:tell("You stop fooing.");
+who = args[1];
+player:aat(who:name(), " stops fooing.");
 .
 #7:3
 return "fooing";
 .
 #11:0
 notify(this, tostr(@args));
+.
+#11:1
+txt = args[1] || "...";
+m = $english_utils:quote(this, txt);
+this:announce_action_text(m);
+.
+#12:0
+if (!valid(player.location))
+player:tell("There is only darkness.");
+elseif (valid(dobj))
+player:tell("It's ", dobj:iname(), ".");
+elseif (dobjstr)
+player:tell("There's no '", dobjstr, "' here.");
+else
+player:tell(player.location:name());
+endif
 .
 #13:0
 for x in (this.contents)
@@ -812,6 +941,9 @@ endfor
 for x in (contents)
 `x.listening ! ANY => 0' && x:tell(@text);
 endfor
+.
+#13:2
+player:say(argstr);
 .
 #14:0
 ":article_for(STR s)";
@@ -830,8 +962,43 @@ endif
 endfor
 return "a";
 .
+#14:1
+":quote(OBJ who, STR text, [BOOL real_name, [STR override_name]]) => 'Who says, \"text\".'";
+{who, text} = args;
+name = who:title();
+if (text)
+if (text[$] == "?")
+return tostr(name, " asks, \"", text, "\"");
+elseif (text[$] == "!")
+return tostr(name, " exlaims, \"", text, "\"");
+else
+return tostr(name, " says, \"", text, "\"");
+endif
+else
+return name;
+endif
+.
+#15:0
+":capitalize(STR string)";
+if (string = args[1])
+ansi = 0;
+for i in [1..length(string)]
+if (string[i] == "~")
+ansi = 1;
+elseif (ansi && (string[i] == "m"))
+ansi = 0;
+elseif (!ansi)
+if (testi = index("abcdefghijklmnopqrstuvwxyz", string[i], 0))
+string[i] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[testi];
+return string;
+endif
+endif
+endfor
+return string;
+endif
+.
 0 clocks
 0 queued tasks
 0 suspended tasks
 1 active connections with listeners
-3 0
+17 0
