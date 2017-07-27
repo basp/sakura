@@ -142,7 +142,9 @@ Although this is mostly just some verbs on the `$actor` class it's useful to dis
 
 ### Libraries
 #### $actions
-Every action should be registered with this object as a *property* so that it is easy to lookup and queue. This is mostly a placeholder object for some general help.
+Every action should be registered with this object as a *property* so that it is easy to lookup and queue. This is mostly a placeholder object for some general help as well as the **main place** where all public actions can be found.
+
+> Every public action should be defined as a readable property on the `$actions` object.
 
 ### FAQ
 #### I'm a programmer and my `;` doesn't seem to be working
