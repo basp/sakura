@@ -19,7 +19,7 @@ The `eval` method is essiental for doing any kind of low-level programming while
 
 So: `eval 3 + 2` is equivalent to `;3 + 2`.
 
-The `eval` verb is not limited to evaluating expressions though. It can maniupalate the MOO with all the rights you've been granted with. YOu can `add_verb`, `add_property`, `chowner` and who knows what if you have the right authorization.
+The `eval` verb is not limited to evaluating expressions though. It can maniupalate the MOO with all the rights you've been granted with. You can `add_verb`, `add_property`, `chowner` and who knows what if you have the right authorization.
 
 #### $ansi
 This has the ANSI codes to make fancy colors appear on terminal devices that support it.
