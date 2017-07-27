@@ -149,7 +149,7 @@ Every action should be registered with this object as a *property* so that it is
 ##### $actions.foo
 This is a test/example action that causes an `$actor` to do nothing more than `announce_action_text` using the dummy action it's performing.
 
-    $actor:queue($actions.foo, {}, 1, "foo");
+    ;$actor:queue($actions.foo, {}, 1, "foo");
 
 ### FAQ
 #### I'm a programmer and my `;` doesn't seem to be working
