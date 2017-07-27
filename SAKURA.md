@@ -15,7 +15,37 @@ This has the ANSI codes to make fancy colors appear on terminal devices that sup
 
 > On devices that don't support this we'll be probably outputting garbage since we don't have any devices in place to strip the color codes from the output.
 
-If you want to know what kinds of codes are supported you can just request the properties on the `$ansi` object:
+Here's the current list of display codes defined on the `$ansi` object:
+
+##### Control
+* `esc` (the ANSI escape character)
+* `reset` (reset to default terminal style)
+
+##### FX
+* `bold_on` (turn on bold or highlight)
+* `bold_off` (turn off bold or highlight)
+
+##### Foreground
+* `black`
+* `red`
+* `green`
+* `yellow`
+* `blue`
+* `magenta`
+* `cyan`
+* `white`
+
+##### Background
+* `black_bg`
+* `red_bg`'
+* `green_bg`
+* `yellow_bg`
+* `blue_bg`
+* `magenta_bg`
+* `cyan_bg`
+* `white_bg`
+
+You can also just inspect the properties on the `$ansi` object itself in case you forget:
 
     ;properties($ansi)
     => {"esc", "reset", "bold_on", "bold_off", "black", "red", "green", "yellow",
