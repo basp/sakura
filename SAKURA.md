@@ -70,7 +70,7 @@ This is mostly a placeholder object (and *tag* for action objects) to hold some 
 This object contains the prototypical *action queue* implemenation that originates from the `hellcore.db` database (it's simplified and tweaked though).
 
 #### $creature
-This is an important proto that will eventuall support a lot of behavior that is important for gaming purposes.
+This is an important proto that (will eventually) support(s) a lot of behavior that is important for gaming purposes.
 
 #### $player
 This proto deals mostly with user preferences and supports the basic behavior for players to be functional in the world.
