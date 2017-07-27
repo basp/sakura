@@ -88,11 +88,36 @@ Your response will vary because we're creating a new object here. The result we 
 
 What we just did is create a new object with the characteristics of the `$actor` object but we can play with it without worrying about messing up the prototypical `$actor` itself.
 
-So with that new object (`#12`) we can try out the action qaueue. Remember, we need to queue *specs* and not actions so:
+So with that new object (`#12`) we can try out the action queue. Remember, we need to queue *specs* and not actions so:
 
     ;#12:queue_action({$actions.foo, [], 1, "foo"});
 
-And you should see some output about starting and stopping fooing.
+And you should see some output about starting and stopping fooing. You can queue up to around 25 actions which should be more than enough for gaming purposes. 
+
+> The limit is arbitrary and can be increased if you want.
+
+If at any point in time you want to inspect the action queue of any object you can `qu*ueue` it. Let's say there's an `$actor` object in the room called `flurb` and we want to inspect it's queue:
+
+    qu flurb
+
+And we should see something like this:
+
+    Showing queue for #123:
+    You've got nothing to do.
+
+Now if we queue up some actions for the `flurb` thingy with object id (`#123`):
+
+    ;#123:queue_action($actions.foo, {}, 1, "foo");
+    ;#123:queue_action($actions.foo, {}, 1, "foo");
+    ;#123:queue_action($actions.foo, {}, 1, "foo");
+
+And then if we execute `qu` we get an overview of the object's action queue:
+
+    qu flurb
+    Showing queue for #123:
+    At the moment, you're fooing.
+        --> foo
+        --> (end of queue)
 
 If you queue a lot of actions they will *stack* as if it really was a queue. For now, and for development purposes you can pretty easily cancel a whole queue by calling the `stop` verb:
 
