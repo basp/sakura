@@ -13,7 +13,11 @@ This describes the **0.1** version of the **Sakura** database. You can inspect y
 ## Reference
 ### Core
 #### eval
-OUr basic `eval` method setup in the "The First Room". You might seriously want to consider changing this but *do make a backup* and think well before you do.
+Our basic `eval` method setup in the "The First Room". You might seriously want to consider changing this but *do make a backup* and think well before you do.
+
+The `eval` method is essiental for doing any kind of low-level programming while we're still building the game. Most people use the *eval shortcut* `;` instead though. 
+
+So: `eval 3 + 2` is equivalent to `;3 + 2`.
 
 #### $ansi
 This has the ANSI codes to make fancy colors appear on terminal devices that support it.
