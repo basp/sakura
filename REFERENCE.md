@@ -7,12 +7,12 @@ This aims to be a complete programmer's reference to Sakura.
 #### $ansi
 
 ### Prototypical
+#### $action
 #### $actor
 #### $creature
 #### $player
 #### $room
 #### $thing
-#### $action
 
 ### Utils
 #### $string_utils
