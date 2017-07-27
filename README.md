@@ -103,8 +103,3 @@ And that will cancel the execution of the current action as well as any actions 
     ;recycle(#12);
 
 This will free up some space on disk as well as in memory.
-
-## TODO
-* Long actions, continue the same action over and over.
-* (Or perhaps) continue from one action into the next.
-* Smooth output on continuations (e.g. "You continue...")
