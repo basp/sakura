@@ -1,5 +1,5 @@
 ## Sakura
-This aims to be a complete guide to the `sakura` database.
+This aims to be a complete guide to **Sakura**.
 
 ## Getting started (with minimal)
 ## Getting started (with sakura)
