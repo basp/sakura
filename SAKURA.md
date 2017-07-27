@@ -82,6 +82,9 @@ The `$root` object has some convenient naming verbs:
     ;#123:iname()
     => "an urghard";
     
+    ;#123:dname()
+    => "the urghard";
+
     ;#123:name();
     => "urghard";
     
