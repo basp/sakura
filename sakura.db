@@ -1,6 +1,6 @@
 ** LambdaMOO Database, Format Version 6 **
-11
-13
+14
+16
 0
 1
 3
@@ -14,13 +14,13 @@ System Object
 -1
 1
 -1
-2
+4
 1
 do_login_command
 3
 173
 -1
-7
+10
 actor
 action
 nothing
@@ -28,7 +28,10 @@ ambiguous_match
 failed_match
 actions
 ansi
-7
+creature
+player
+room
+11
 1
 4
 3
@@ -57,6 +60,21 @@ ansi
 10
 3
 1
+1
+11
+3
+1
+1
+12
+3
+1
+1
+13
+3
+1
+5
+3
+1
 #1
 Root Class
 
@@ -69,8 +87,13 @@ Root Class
 0
 -1
 0
+1
+listening
+1
 0
 0
+3
+1
 #2
 The First Room
 
@@ -79,16 +102,19 @@ The First Room
 -1
 3
 -1
-1
+13
 -1
-4
+-1
 1
 eval
 3
 88
 -2
 0
-0
+1
+5
+3
+1
 #3
 Wizard
 
@@ -97,12 +123,12 @@ Wizard
 2
 -1
 -1
-4
+12
 -1
 -1
 0
 0
-4
+5
 4
 0
 3
@@ -112,11 +138,14 @@ Wizard
 3
 1
 0
-1666386761
+2044894084
 3
 1
 4
 0
+3
+1
+5
 3
 1
 #4
@@ -128,7 +157,7 @@ Actor
 -1
 -1
 1
-3
+11
 5
 7
 queue_action
@@ -164,7 +193,7 @@ queue
 preemptible
 process_queue
 executing
-4
+5
 4
 0
 3
@@ -179,6 +208,9 @@ executing
 1
 4
 0
+3
+1
+5
 3
 1
 #5
@@ -202,7 +234,10 @@ _finish
 172
 -1
 0
-0
+1
+5
+3
+1
 #6
 
 
@@ -216,9 +251,12 @@ _finish
 7
 0
 0
-0
+1
+5
+3
+1
 #7
-
+foo
 
 0
 3
@@ -246,7 +284,10 @@ doing_msg
 173
 -1
 0
-0
+1
+5
+3
+1
 #8
 Actions
 
@@ -261,9 +302,12 @@ Actions
 0
 1
 foo
-1
+2
 1
 7
+3
+1
+5
 3
 1
 #9 recycled
@@ -277,13 +321,199 @@ ANSI
 -1
 1
 -1
+13
+0
+20
+esc
+reset
+bold_on
+bold_off
+black
+red
+green
+yellow
+blue
+magenta
+cyan
+white
+black_bg
+red_bg
+green_bg
+yellow_bg
+blue_bg
+magenta_bg
+cyan_bg
+white_bg
+21
+2
+
+3
+1
+2
+[0m
+3
+1
+2
+[1m
+3
+1
+2
+[22m
+3
+1
+2
+[30m
+3
+1
+2
+[31m
+3
+1
+2
+[32m
+3
+1
+2
+[33m
+3
+1
+2
+[34m
+3
+1
+2
+[35m
+3
+1
+2
+[36m
+3
+1
+2
+[37m
+3
+1
+2
+[40m
+3
+1
+2
+[41m
+3
+1
+2
+[42m
+3
+1
+2
+[43m
+3
+1
+2
+[44m
+3
+1
+2
+[45m
+3
+1
+2
+[46m
+3
+1
+2
+[47m
+3
+1
+5
+3
+1
+#11
+Creature
+
+0
+3
+-1
+-1
+-1
+4
+12
+-1
+1
+tell
+3
+173
+-1
+0
+5
+5
+3
+1
+5
+3
+1
+5
+3
+1
+5
+3
+1
+5
+3
+1
+#12
+Player
+
+0
+3
+-1
+-1
+-1
+11
+3
+-1
+0
+0
+5
+5
+3
+1
+5
+3
+1
+5
+3
+1
+5
+3
+1
+0
+1
+3
+1
+#13
+Room
+
+0
+3
+-1
+-1
+-1
+1
+2
+-1
+2
+announce_all
+3
+173
+-1
+announce_all_but
+3
+173
 -1
 0
 1
-esc
-1
-2
-
+5
 3
 1
 #0:0
@@ -302,12 +532,16 @@ endif
 #4:0
 ":queue_action(OBJ action, LIST args, BOOL int, STR cmd)";
 {action, args, INT, cmd} = spec = args;
+if (length(this.queue) > 25)
+notify(player, tostr($ansi.cyan, "[ Sorry -- can't queue ", action.name, " (", cmd, "), more than 25 actions! ]", $ansi.reset));
+return;
+endif
 this.queue = listappend(this.queue, spec);
 if (task_valid(this.process_queue))
 if (this.preemptible)
 this:cancel_current_action();
 else
-"Notify player of queued action...";
+notify(player, tostr($ansi.cyan, "[ queued '", cmd, "' ]", $ansi.reset));
 endif
 else
 this:fork_process_queue();
@@ -419,26 +653,26 @@ this.preemptible = 1;
 #4:5
 if (dobjstr && player.programmer)
 if (!valid(dobj))
-notify(player, "queue who?");
+player:tell("queue who?");
 return;
 endif
 if (!is_a(dobj, $actor))
-notify(player, "You can't queue that.");
+player:tell("You can't queue that.");
 endif
-notify(player, tostr("Showing queue for ", toliteral(dobj), ":"));
+player:tell("Showing queue for ", toliteral(dobj), ":");
 else
 dobj = this;
 endif
 if ((!dobj.queue) && (!dobj.executing))
-notify(player, "You've got nothing to do.");
+player:tell("You've got nothing to do.");
 else
 if (dobj.executing)
-notify(player, tostr("At the moment, you're ", dobj:doing_msg(), "."));
+player:tell("At the moment, you're ", dobj:doing_msg(), ".");
 endif
 for x in (dobj.queue)
-notify(player, tostr("  --> ", x[4]));
+player:tell("  --> ", x[4]);
 endfor
-notify(player, "  --> (end of queue)");
+player:tell("  --> (end of queue)");
 endif
 .
 #4:6
@@ -454,13 +688,33 @@ notify(player, "You start fooing.");
 return {3, $nothing};
 .
 #7:1
-notify(player, "You finish fooing.");
+who = args[1];
+who:tell("You finish fooing.");
 .
 #7:2
-notify(player, "You stop fooing.");
+who:tell("You stop fooing.");
 .
 #7:3
 return "fooing";
+.
+#11:0
+notify(this, tostr(@args));
+.
+#13:0
+for x in (this.contents)
+`x.listening ! ANY => 0' && x:tell(@args);
+endfor
+.
+#13:1
+":announce_all_but(LIST objects_to_ignore, text)";
+{ignore, @text} = args;
+contents = this.contents;
+for x in (ignore)
+contents = setremove(contents, x);
+endfor
+for x in (contents)
+`x.listening ! ANY => 0' && x:tell(@text);
+endfor
 .
 0 clocks
 0 queued tasks
