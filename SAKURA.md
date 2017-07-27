@@ -149,6 +149,8 @@ Every action should be registered with this object as a *property* so that it is
 ##### $actions.foo
 This is a test/example action that causes an `$actor` to do nothing more than `announce_action_text` using the dummy action it's performing.
 
+    $actor:queue($actions.foo, {}, 1, "foo");
+
 ### FAQ
 #### I'm a programmer and my `;` doesn't seem to be working
 Your client might be *eating* (using) `;` as a command separator and thus it's not being send to the server. This causes the server to be confuzzled while trying to interpret your commands.
