@@ -125,7 +125,7 @@ If you queue a lot of actions they will *stack* as if it really was a queue. For
 
 You can cancel (a lot) of actions by calling `cancel_current_action` which will try to abort the current action and continue with any next one that might be queued up.
 
-And that will cancel the execution of the current action as well as any actions queued up in the queue. If you're done playing with that actor object it's good practice to `recycle` it:
+ If you're done playing with that actor object it's good practice to `recycle` it:
 
     ;recycle(#12);
 
