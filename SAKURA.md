@@ -21,3 +21,6 @@ This aims to be a complete guide to **Sakura**.
 ### Utils
 #### $english_utils
 #### $string_utils
+
+### Libraries
+#### $actions
