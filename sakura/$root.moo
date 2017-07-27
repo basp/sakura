@@ -3,16 +3,17 @@ this.location:announce_all(@args);
 .
 
 .program $root:name
+"The canon name.";
 return this.name;
 .
 
 .program $root:dname
-"Definitive name";
+"Definitive name.";
 return tostr("the ", this:name());
 .
 
 .program $root:iname
-"Infinitive name";
+"Infinitive name.";
 name = this:name();
 if (has_property(this, "article"))
     return tostr(this.article, " ", name);
