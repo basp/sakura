@@ -91,7 +91,7 @@ The `$root` object has some convenient naming verbs:
     ;#123:title();
     => "urghard";    
 
-There's also capitalized versions availabe in the form of `dnamec`, `inamec` etc. And these are also opportunities for any child objects to override behaviour of those verbs. The core implementations are basically mostly stubs and are meant to be overridden in more specialized objects.
+There's also capitalized versions availabe in the form of `dnamec`, `inamec` etc. And all of these `*name` verbs are also opportunities for any child objects to override behaviour of those verbs. The core implementations are basically mostly stubs and are meant to be overridden in more specialized objects.
 
 ### Prototypical
 #### $action
