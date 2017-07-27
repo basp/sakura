@@ -1,6 +1,10 @@
 ## Sakura
-This aims to be a complete programmer's reference to Sakura.
+This aims to be a complete guide to the `sakura` database.
 
+## Getting started (with minimal)
+## Getting started (with sakura)
+
+## Reference
 ### Core
 #### eval
 #### $ansi
