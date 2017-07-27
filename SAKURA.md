@@ -1,6 +1,8 @@
 ## Sakura
 This aims to be a complete guide to **Sakura**.
 
+> This describes the **0.1** version of the **Sakura** database.
+
 ## Getting started (with minimal)
 ## Getting started (with sakura)
 ## Programming
