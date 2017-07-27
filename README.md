@@ -105,7 +105,7 @@ And we should see something like this:
     Showing queue for #123:
     You've got nothing to do.
 
-Now if we queue up some actions for the `flurb` thingy with object id (`#123`):
+Now if we queue up some actions for the `flurb` thingy with object id `#123`:
 
     ;#123:queue_action($actions.foo, {}, 1, "foo");
     ;#123:queue_action($actions.foo, {}, 1, "foo");
