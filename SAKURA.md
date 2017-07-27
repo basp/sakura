@@ -1,7 +1,10 @@
 ## Sakura
 This aims to be a complete guide to **Sakura**. 
 
-> This describes the **0.1** version of the **Sakura** database. You can inspect your database version by querying `$kernel.version` using the `eval` verb.
+This describes the **0.1** version of the **Sakura** database. You can inspect your database version by querying `$kernel.version` using the `eval` verb:
+
+    ;$kernel.version
+    => "0.1"
 
 ## Getting started (with minimal)
 ## Getting started (with sakura)
