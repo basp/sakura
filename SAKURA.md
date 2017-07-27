@@ -75,12 +75,18 @@ The `$root` object has some convenient naming verbs:
     
     ;#123:iname();
     => "a flurb"
+
+    ;#123.name = "urghard";
+    => 0
+
+    ;#123:iname()
+    => "an urghard";
     
     ;#123:name();
-    => "flurb";
+    => "urghard";
     
     ;#123:title();
-    => "flurb";    
+    => "urghard";    
 
 There's also capitalized versions availabe in the form of `dnamec`, `inamec` etc. And these are also opportunities for any child objects to override behaviour of those verbs. The core implementations are basically mostly stubs and are meant to be overridden in more specialized objects.
 
