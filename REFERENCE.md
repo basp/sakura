@@ -2,7 +2,7 @@
 This aims to be a complete programmer's reference to Sakura.
 
 ### Core
-#### kernel
+#### eval
 #### $ansi
 #### $root
 
