@@ -73,13 +73,11 @@ First see if this secnario works:
 
 So you type `;3 + 2` (including the `;`) and the system responds with `=> 5`. If you got that working then you are good to go.
 
-Now, as far as the **action queue** goes, we don't actually push actions but we push so called *action specs* onto the queue. An *action spec* is basically a `{action, args, description}` tuple.
+Now, as far as the **action queue** goes, we don't actually push actions but we push so called *action specs* onto the queue. An *action spec* is basically a `{action, args, interruptible, description}` tuple.
 
 Now we could use the `$actor` object directly:
 
     ;$actor:queue_action({$actions.foo, [], 1, "foo"});
-
-> Note that the 3rd argument, the `1` flag specifies that this action is interruptible.
 
 Which would work but we can also do a bit better by creating a new `$actor` object:
 
