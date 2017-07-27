@@ -38,7 +38,7 @@ This proto deals mostly with user preferences and supports the basic behavior fo
 This proto is mostly responsible for describing the environment to its users.
 
 #### $thing
-There's a lot of random *things* in the world. If you are unsure it's always better to `create($thing)` than to `create($root)`.
+There's a lot of random *things* in the world. If you are creating something not very significant, it's better to `create($thing)` than to `create($root)`. At the very least it makes it a lot easier to keep track of all the objects that *will* appear and their importance.
 
 ### Utils
 Utils are orthogonally useful in variety of ways. A typical utility method is *pure* (it doesn't mess with state). In some other languages there's the concept of a `static` method. Things that would be *publically* `static` would probably be suitable for a utils class. 
