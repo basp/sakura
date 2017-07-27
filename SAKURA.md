@@ -41,9 +41,9 @@ This proto is mostly responsible for describing the environment to its users.
 There's a lot of random *things* in the world. If you are creating something not very significant, it's better to `create($thing)` than to `create($root)`. At the very least it makes it a lot easier to keep track of all the objects that *will* appear and their importance.
 
 ### Utils
-Utils are orthogonally useful in variety of ways. A typical utility method is *pure* (it doesn't mess with state). In some other languages there's the concept of a `static` method. Things that would be *publically* `static` would probably be suitable for a utils class. 
+Utils are orthogonally useful in variety of ways. A typical utility method is *pure* (it doesn't mess with state). 
 
-> The concept of `static` doesn't exist in **LambdaMOO** though we can easily *fake* it.
+> In some other languages there's the concept of a `static` method. Things that would be *publically* `static` would probably be suitable for a utils class. The concept of `static` doesn't exist in **LambdaMOO** though we can easily *fake* it.
 
 #### $english_utils
 A set of utilities that help dealing with the English language.
