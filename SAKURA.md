@@ -18,9 +18,7 @@ This has the ANSI codes to make fancy colors appear on terminal devices that sup
 If you want to know what kinds of codes are supported you can just request the properties on the `$ansi` object:
 
     ;properties($ansi)
-        => {"esc", "reset", "bold_on", "bold_off", "black", "red", "green", "yellow", "blue", "magenta",
-        "cyan", "white", "black_bg", "red_bg", "green_bg", "yellow_bg", "blue_bg", "magenta_bg", "cyan_bg", 
-        "white_bg"}
+    => {"esc", "reset", "bold_on", "bold_off", "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "black_bg", "red_bg", "green_bg", "yellow_bg", "blue_bg", "magenta_bg", "cyan_bg", "white_bg"}
 
 If you want to use these codes it's pretty easy, for example:
 
