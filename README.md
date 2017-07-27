@@ -1,7 +1,7 @@
 ## Sakura
 The central repository for both the **Sakura** `Dockerfile` (to build a development image) and the *current* database required to bootstrap your environment.
 
-This readme contains some conceptual information as well a little bit to get you going. For more in-depth info on **Sakura** particularely you probably want to check [`SAKURA.md`](https://github.com/basp/sakura/blob/master/SAKURA.md).
+This readme contains some conceptual information as well a little bit to get you going. For more in-depth info on **Sakura** particularely you probably want to check [SAKURA.md](https://github.com/basp/sakura/blob/master/SAKURA.md).
 
 ## Why?
 You will only need this if you are on Windows and wanna do some local MOO hacking without relying on a machine in the cloud. This `Dockerfile` should compile a Docker image that you can boot up to start hacking on a variety of MOO databases straightaway.
