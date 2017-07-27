@@ -58,6 +58,9 @@ If you want to use these codes it's pretty easy, for example:
 
 Nostalgia.
 
+#### $kernel
+TODO
+
 #### $root
 If an object doesn't have a clear ancestor it should be created from root:
 
