@@ -22,7 +22,7 @@ if (!string)
     return "a";
 endif
 for i in [1..length(string)]
-    "Skip any characters not in the English alphabet.";
+    "Skip any leading characters not in the English alphabet.";
     if (index($string_utils.alphabet, string[i]))
         if (index("aeiou", string[i]))
             return "an";
