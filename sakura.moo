@@ -9,20 +9,42 @@ else
 endif
 .
 
-.program $foo:_start
-notify(player, "You start fooing.");
+.program #1:name
+return this.name;
+.
+
+.program #1:dname
+return tostr("the ", this:name());
+.
+
+.program #1:iname
+name = this:name();
+if (has_property(this, "article"))
+    return tostr(this.article, " ", name);
+endif
+return tostr($english_utils:article_for(name), " ", name);
+.
+
+.program #1:title
+return this:name();
+.
+
+.program #7:_start
+who = args[1];
+who:tell("You start fooing.")
 return {3, $nothing};
 .
 
-.program $foo:_finish
-notify(player, "You finish fooing.");
+.program #7:_finish
+who = args[1];
+who:tell("You finish fooing.");
 .
 
-.program $foo:_abort
-notify(player, "You stop fooing.");
+.program #7:_abort
+who:tell("You stop fooing.");
 .
 
-.program $foo:doing_msg
+.program #7:doing_msg
 return "fooing";
 .
 
@@ -95,12 +117,16 @@ this.executing = {};
 .program $actor:queue_action
 ":queue_action(OBJ action, LIST args, BOOL int, STR cmd)";
 {action, args, int, cmd} = spec = args;
+if (length(this.queue) > 25)
+    this:tell($ansi.cyan, "[ Sorry -- can't queue ", action.name, " (", cmd, "), more than 25 actions! ]", $ansi.reset);
+    return;
+endif
 this.queue = listappend(this.queue, spec);
 if (task_valid(this.process_queue))
     if (this.preemptible)
         this:cancel_current_action();
     else
-        "Notify player of queued action...";
+        this:tell($ansi.cyan, "[ queued '", cmd, "' ]", $ansi.reset);
     endif
 else
     this:fork_process_queue();
@@ -151,26 +177,26 @@ this.preemptible = 1;
 .program $actor:queue
 if (dobjstr && player.programmer)
     if (!valid(dobj))
-        notify(player, "queue who?");
+        player:tell("queue who?");
         return;
     endif
     if (!is_a(dobj, $actor))
-        notify(player, "You can't queue that.");
+        player:tell("You can't queue that.");
     endif
-    notify(player, tostr("Showing queue for ", toliteral(dobj), ":"));
+    player:tell("Showing queue for ", toliteral(dobj), ":");
 else   
     dobj = this;
 endif
 if ((!dobj.queue) && (!dobj.executing))
-    notify(player, "You've got nothing to do.");
+    player:tell("You've got nothing to do.");
 else
     if (dobj.executing)
-        notify(player, tostr("At the moment, you're ", dobj:doing_msg(), "."));
+        player:tell("At the moment, you're ", dobj:doing_msg(), ".");
     endif
     for x in (dobj.queue)
-        notify(player, tostr("  --> ", x[4]));
+        player:tell("  --> ", x[4]);
     endfor
-    notify(player, "  --> (end of queue)");
+    player:tell("  --> (end of queue)");
 endif
 .
 
@@ -183,4 +209,67 @@ if (this.executing)
 endif
 .
 
-;add_property($ansi, "esc", "FROTZ", {#3, "r"});
+.program $creature:tell
+notify(this, tostr(@args));
+.
+
+.program $room:announce_all
+for x in (this.contents)
+    `x.listening ! ANY => 0' && x:tell(@args);
+endfor
+.
+
+.program $room:announce_all_but
+":announce_all_but(LIST objects_to_ignore, text)";
+{ignore, @text} = args;
+contents = this.contents;
+for x in (ignore)
+    contents = setremove(contents, x);
+endfor
+for x in (contents)
+    `x.listening ! ANY => 0' && x:tell(@text);
+endfor
+.
+
+.program $english_utils:quote
+":quote(OBJ who, STR text)
+.
+
+.program $english_utils:article_for
+":article_for(STR s)";
+string = args[1];
+if (!string)
+    return "a";
+endif
+for i in [1..length(string)]
+    if (index($string_utils.alphabet, string[i]))
+        if (index("aeiou", string[i]))
+            return "an";
+        else
+            return "a";
+        endif
+    endif
+endfor
+return "a";
+.
+
+";add_property($ansi, "esc", "", {#3, "r"});";
+;add_property($ansi, "reset", tostr($ansi.esc, "[0m"), {#3, "r"});
+;add_property($ansi, "bold_on", tostr($ansi.esc, "[1m"), {#3, "r"});
+;add_property($ansi, "bold_off", tostr($ansi.esc, "[22m"), {#3, "r"});
+;add_property($ansi, "black", tostr($ansi.esc, "[30m"), {#3, "r"});
+;add_property($ansi, "red", tostr($ansi.esc, "[31m"), {#3, "r"});
+;add_property($ansi, "green", tostr($ansi.esc, "[32m"), {#3, "r"});
+;add_property($ansi, "yellow", tostr($ansi.esc, "[33m"), {#3, "r"});
+;add_property($ansi, "blue", tostr($ansi.esc, "[34m"), {#3, "r"});
+;add_property($ansi, "magenta", tostr($ansi.esc, "[35m"), {#3, "r"});
+;add_property($ansi, "cyan", tostr($ansi.esc, "[36m"), {#3, "r"});
+;add_property($ansi, "white", tostr($ansi.esc, "[37m"), {#3, "r"});
+;add_property($ansi, "black_bg", tostr($ansi.esc, "[40m"), {#3, "r"});
+;add_property($ansi, "red_bg", tostr($ansi.esc, "[41m"), {#3, "r"});
+;add_property($ansi, "green_bg", tostr($ansi.esc, "[42m"), {#3, "r"});
+;add_property($ansi, "yellow_bg", tostr($ansi.esc, "[43m"), {#3, "r"});
+;add_property($ansi, "blue_bg", tostr($ansi.esc, "[44m"), {#3, "r"});
+;add_property($ansi, "magenta_bg", tostr($ansi.esc, "[45m"), {#3, "r"});
+;add_property($ansi, "cyan_bg", tostr($ansi.esc, "[46m"), {#3, "r"});
+;add_property($ansi, "white_bg", tostr($ansi.esc, "[47m"), {#3, "r"});
