@@ -66,14 +66,19 @@ The `$root` object has some convenient naming verbs:
 
     ;create($root);
     => #123
+    
     ;#123.name = "flurb";
     => 0
+    
     ;#123:dname();
     => "the flurb"
+    
     ;#123:iname();
     => "a flurb"
+    
     ;#123:name();
     => "flurb";
+    
     ;#123:title();
     => "flurb";    
 
