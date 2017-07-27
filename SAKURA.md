@@ -131,6 +131,9 @@ A set of utilities that help dealing with the English language.
 #### $string_utils
 A set of utilities that help dealing with strings.
 
+### Action queue
+Although this is mostly just some verbs on the `$actor` class it's useful to discuss this framework separately.
+
 ### Libraries
 #### $actions
 Every action should be registered with this object as a *property* so that it is easy to lookup and queue. This is mostly a placeholder object for some general help.
