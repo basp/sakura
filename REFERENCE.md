@@ -7,6 +7,7 @@ This aims to be a complete programmer's reference to Sakura.
 #### $ansi
 
 ### Prototypical
+#### $actor
 #### $creature
 #### $player
 #### $room
