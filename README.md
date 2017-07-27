@@ -119,9 +119,11 @@ And then if we execute `qu` we get an overview of the object's action queue:
         --> foo
         --> (end of queue)
 
-If you queue a lot of actions they will *stack* as if it really was a queue. For now, and for development purposes you can pretty easily cancel a whole queue by calling the `stop` verb:
+If you queue a lot of actions they will *stack* as if it really was a queue. For now, and for development purposes you can pretty easily cancel a whole queue by calling the `clear_queue` verb:
 
-    ;#12:stop();
+    ;#12:clear_queue();
+
+You can cancel (a lot) of actions by calling `cancel_current_action` which will try to abort the current action and continue with any next one that might be queued up.
 
 And that will cancel the execution of the current action as well as any actions queued up in the queue. If you're done playing with that actor object it's good practice to `recycle` it:
 
