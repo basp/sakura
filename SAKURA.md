@@ -69,7 +69,7 @@ A set of utilities that help dealing with strings.
 Every action should be registered with this object as a *property* so that it is easy to lookup and queue. This is mostly a placeholder object for some general help.
 
 ### FAQ
-#### My `;` doesn't seem to be working!
+#### I'm a programmer and my `;` doesn't seem to be working
 Your client might be *eating* (using) `;` as a command separator and thus it's not being send to the server. This causes the server to be confuzzled while trying to interpret your commands.
 
-Look into your client settings. In **Mudlet** it's called "command separator" and by default it's set to `;` which causes a lot of problems for MOO type games. I usually set it to `|||` because most MOO's don't need the client command separation anyway (they are smart).
+Look into your client settings. In **Mudlet** it's called "command separator" and by default it's set to `;` which causes a lot of problems for MOO type games. I usually set it to `|||` because if you're programming you probably don't need the command seperation from the client side anyway.
