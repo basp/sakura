@@ -182,3 +182,5 @@ if (this.executing)
     return "";
 endif
 .
+
+;add_property($ansi, "esc", "FROTZ", {#3, "r"});
