@@ -62,6 +62,23 @@ If an object doesn't have a clear ancestor it should be created from root:
     ;create($root);
     => #123;
 
+The `$root` object has some convenient naming verbs:
+
+    ;create($root);
+    => #123
+    ;#123.name = "flurb";
+    => 0
+    ;#123:dname();
+    => "the flurb"
+    ;#123:iname();
+    => "a flurb"
+    ;#123:name();
+    => "flurb";
+    ;#123:title();
+    => "flurb";    
+
+There's also capitalized versions availabe in the form of `dnamec`, `inamec` etc. And these are also opportunities for any child objects to override behaviour of those verbs. The core implementations are basically mostly stubs and are meant to be overridden in more specialized objects.
+
 ### Prototypical
 #### $action
 This is mostly a placeholder object (and *tag* for action objects) to hold some documentation.
