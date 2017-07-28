@@ -35,3 +35,20 @@ return $string_utils:capitalize(this:iname());
 "The thing's special title.";
 return this:name();
 .
+
+.program $root:description
+if (!this.description && !(this == $root))
+    return parent(this).description;
+else
+    return this.description;
+endif
+.
+
+.program $root:look_self
+desc = this:description();
+if (desc)
+    player:tell_lines(desc);
+else
+    player:tell("It's ", this:iname(), ".");
+endif
+.

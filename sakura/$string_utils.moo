@@ -17,3 +17,6 @@ if (string = args[1])
     return string;
 endif
 .
+
+.program $string_utils:english_list
+.

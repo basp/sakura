@@ -1,0 +1,26 @@
+{
+    "name": "lambdamoo",
+    "displayName": "lambdamoo",
+    "description": "LambdaMOO syntax highlighting",
+    "version": "0.0.1",
+    "publisher": "tmg",
+    "engines": {
+        "vscode": "^1.14.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "moo",
+            "aliases": ["moo", "moo"],
+            "extensions": ["moo"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "moo",
+            "scopeName": "source.moo",
+            "path": "./syntaxes/moo.tmLanguage.json"
+        }]
+    }
+}

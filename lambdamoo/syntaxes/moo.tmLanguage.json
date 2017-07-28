@@ -1,0 +1,32 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "moo",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.moo",
+				"match": "\\b(if|else|elseif|endif|while|endwhile|for|endfor|return|try|except|endtry|fork)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.moo",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.moo",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.moo"
+}
