@@ -1,4 +1,4 @@
-";add_property($ansi, "esc", "", {#3, "r"});";
+";add_property($ansi, \"esc\", \"\", {#3, \"r\"});";
 
 ;add_property($ansi, "reset", tostr($ansi.esc, "[0m"), {#3, "r"});
 ;add_property($ansi, "bold_on", tostr($ansi.esc, "[1m"), {#3, "r"});
