@@ -1,0 +1,144 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "moo",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#functions"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.moo",
+					"match": "\\b(this)\\b"
+				},
+				{
+					"name": "keyword.operator.moo",
+					"match": "&&|\\|\\|"
+				},
+				{
+					"name": "keyword.control.moo",
+					"match": "\\b(if|else|elseif|endif|while|endwhile|for|endfor|return|try|except|endtry|fork)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.moo",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.moo",
+					"match": "\\\\."
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.moo",
+					"match": "\\d+"
+				},
+				{
+					"name": "constant.numeric.moo",
+					"match": "\\d+\\.\\d+"
+				},
+				{
+					"name": "constant.numeric.moo",
+					"match": "#\\-?\\d+"
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(abs|acos|add_property|add_verb|asin|atan)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(binary_hash|boot_player|buffered_output_length)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(call_function|caller_perms|callers|ceil|children|chparent|clear_property|connected_players|connected_seconds|connected_name|connected_option|connected_options|cos|cosh|create|crypt|ctime)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(db_disk_size|decode_binary|delete_property|delete_verb|disassemble|dump_database)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(encode_binary|equal|eval|exp)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(floatstr|floor|flush_input|force_input|function_info)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(idle_seconds|index|is_a|is_clear_property|is_member|is_player)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(kill_task)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(length|listappend|listdelete|listen|listeners|listinsert|listset|log|log10)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(match|max|max_object|memory_usage|min|move)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(notify)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(object_bytes|open_network_connection|output_delimiters)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(parent|pass|players|properties|property_info)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(queue_info|queued_tasks)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(raise|random|read|recycle|renumber|reset_max_object|resume|rindex|rmatch)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(seconds_left|server_log|server_version|set_connection_option|set_player_flag|set_property_info|set_task_perms|set_verb_args|set_verb_code|set_verb_info|setadd|setremove|shutdown|sin|sinh|sqrt|strcmp|string_hash|strsub|substitute|suspend)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(tan|tanh|task_id|task_stack|task_valid|ticks_left|time|tofloat|toint|toliteral|tonum|toobj|tostr|trunc|typeof)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(unlisten)\\b"
+				},
+				{
+					"name": "variable.function.moo",
+					"match": "\\b(valid|value_bytes|value_hash|verb_args|verb_code|verb_info|verbs)\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.moo"
+}

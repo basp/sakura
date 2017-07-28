@@ -19,3 +19,4 @@
 ;add_property($ansi, "magenta_bg", tostr($ansi.esc, "[45m"), {#3, "r"});
 ;add_property($ansi, "cyan_bg", tostr($ansi.esc, "[46m"), {#3, "r"});
 ;add_property($ansi, "white_bg", tostr($ansi.esc, "[47m"), {#3, "r"});
+
